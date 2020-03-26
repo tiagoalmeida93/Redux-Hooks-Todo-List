@@ -16,7 +16,9 @@ function TodoList(props) {
   return (
     <>
       <ul>
-        <li>Item do todo</li>
+        {props.todos.map(todo => (
+          <li key={todo.id}>{todo.text}</li>
+        ))}
       </ul>
 
       <input 
