@@ -6,7 +6,6 @@ import * as todosAction from '../actions/todos';
 
 function TodoList(props) {
   const [newTodoText, setNewTodoText] = useState('');
-  console.log(props)
 
   function addNewTodo() {
     props.addTodo(newTodoText)
