@@ -1,6 +1,6 @@
 export function addTodo(text) {
   return {
-    type: 'ADD_TODO',
-    text //igual a text: text
-  }
+    type: "ADD_TODO",
+    text, //text: text
+  };
 }

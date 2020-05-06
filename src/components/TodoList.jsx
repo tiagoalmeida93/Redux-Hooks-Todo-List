@@ -1,40 +1,31 @@
-import React, { useState } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import * as todosAction from '../actions/todos';
+export default function TodoList() {
+  const [newTodoText, setNewTodoText] = useState("");
 
-function TodoList(props) {
-  const [newTodoText, setNewTodoText] = useState('');
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
 
   function addNewTodo() {
-    props.addTodo(newTodoText)
-    setNewTodoText('')
+    dispatch({ type: "ADD_TODO", text: newTodoText });
+    setNewTodoText("");
   }
 
   return (
     <>
       <ul>
-        {props.todos.map(todo => (
+        {todos.map((todo) => (
           <li key={todo.id}>{todo.text}</li>
         ))}
       </ul>
 
-      <input 
+      <input
         type="text"
         value={newTodoText}
-        onChange={e => setNewTodoText(e.target.value)}
+        onChange={(e) => setNewTodoText(e.target.value)}
       />
       <button onClick={() => addNewTodo()}>Novo Todo</button>
     </>
   );
 }
-
-const mapStateToProps = state => ({
-  todos: state.todos,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(todosAction, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
