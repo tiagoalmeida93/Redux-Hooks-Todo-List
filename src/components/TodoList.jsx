@@ -8,8 +8,10 @@ export default function TodoList() {
   const dispatch = useDispatch();
 
   function addNewTodo() {
-    dispatch({ type: "ADD_TODO", text: newTodoText });
-    setNewTodoText("");
+    if (newTodoText.length) {
+      dispatch({ type: "ADD_TODO", text: newTodoText });
+      setNewTodoText("");
+    }
   }
 
   return (
