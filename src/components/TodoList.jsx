@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { addTodoRequest } from "../actions/todos";
 
 export default function TodoList() {
   const [newTodoText, setNewTodoText] = useState("");
@@ -9,7 +10,7 @@ export default function TodoList() {
 
   function addNewTodo() {
     if (newTodoText.length) {
-      dispatch({ type: "ADD_TODO", text: newTodoText });
+      dispatch(addTodoRequest({ text: newTodoText }));
       setNewTodoText("");
     }
   }
